@@ -8,7 +8,18 @@
  * the standard input according to the problem statement.
  **/
 
-//7/10
+
+
+
+
+
+
+//------7/10搞清楚X跟/的關係規則
+
+
+
+
+
 
 int main()
 {
@@ -47,6 +58,12 @@ int main()
                 n+=1;
                 if (GAME[i-1]=='/' && GAME[i+1]!='-'){
                     ABC[n-1]+=GAME[i+1]-'0';
+                }
+                if (GAME[i-1]=='X'){
+                    ABC[n-1]+=10;
+                }
+                if(GAME[i-3]=='X' || GAME[i-4]=='X'){
+                    ABC[n-2]+=10;
                 }
                 ABC[n]+=ABC[n-1];
             }
