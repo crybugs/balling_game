@@ -8,6 +8,8 @@
  * the standard input according to the problem statement.
  **/
 
+//7/10
+
 int main()
 {
     int N;
