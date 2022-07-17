@@ -28,6 +28,7 @@ int main()
                     else if(GAME[i+1]=='X'){
                         ABC[n]+=10;
                     }
+                
                 }
                 else{
                     if(GAME[i+2]=='X'){
@@ -36,6 +37,7 @@ int main()
                     else if(GAME[i+2]!='-'){
                         ABC[n]+=GAME[i+2]-'0';
                     }
+                
                 }
                 if (c==0){
                     if(GAME[i-1]=='-'){
@@ -59,7 +61,10 @@ int main()
                         else if(GAME[i+1]=='-'){
                             ABC[n]+=0;
                         }
-                        else if(GAME[i+1]!='/'){
+                        else if(GAME[i+1]=='/'){
+                            ABC[n]+=(10-(GAME[i+1]-'0'));
+                        }
+                        else if(GAME[i+1]!=' '){
                             ABC[n]+=GAME[i+1]-'0';
                         }
                         if (GAME[i+2]=='X'){
@@ -99,8 +104,11 @@ int main()
                         else if (GAME[i+3]=='/' && GAME[i+2]=='-'){
                             ABC[n]+=10;
                         }
-                        else if(GAME[i+3]!='-'){
+                        else if(GAME[i+3]!='-' && GAME[i+3]!='X'){
                             ABC[n]+=GAME[i+3]-'0';
+                        }
+                        if (GAME[i+3]=='X'){
+                            ABC[n]+=10;
                         }
                     }
                     else if(GAME[i+4]!='-'){
@@ -140,7 +148,7 @@ int main()
     }
     // Write an answer using printf(). DON'T FORGET THE TRAILING \n
     // To debug: fprintf(stderr, "Debug messages...\n");
-   
+
     // printf("5 13 18 26 31 32 34 40 47 54\n");
     return 0;
 }
