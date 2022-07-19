@@ -21,6 +21,13 @@ int main()
         scanf("%[^\n]", GAME); fgetc(stdin);
         for (int i = 0; i<strlen(GAME); i++){
             if (GAME[i]=='/'){
+                if(GAME[i-1]=='-'){
+                    ABC[n]+=10;
+                }
+                else{
+                    ABC[n]+=(10-(GAME[i-1]-'0'));
+                }
+                
                 if (n==9){
                     if (GAME[i+1]=='-'){
                         ABC[n]+=0;
@@ -28,7 +35,10 @@ int main()
                     else if(GAME[i+1]=='X'){
                         ABC[n]+=10;
                     }
-                
+                    else{
+                        ABC[n]+=GAME[i+1]-'0';
+                    }
+                    break;
                 }
                 else{
                     if(GAME[i+2]=='X'){
@@ -38,14 +48,6 @@ int main()
                         ABC[n]+=GAME[i+2]-'0';
                     }
                 
-                }
-                if (c==0){
-                    if(GAME[i-1]=='-'){
-                        ABC[n]+=10;
-                    }
-                    else{
-                        ABC[n]+=(10-(GAME[i-1]-'0'));
-                    }
                 }
                 
             }
@@ -62,7 +64,7 @@ int main()
                             ABC[n]+=0;
                         }
                         else if(GAME[i+1]=='/'){
-                            ABC[n]+=(10-(GAME[i+1]-'0'));
+                            ABC[n]+=(10-(GAME[i]-'0'));
                         }
                         else if(GAME[i+1]!=' '){
                             ABC[n]+=GAME[i+1]-'0';
@@ -81,7 +83,7 @@ int main()
                                 ABC[n]+=(10-(GAME[i+1]-'0'));
                             }
                         }
-                        else{
+                        else if(GAME[i+2]!=' '){
                             ABC[n]+=GAME[i+2]-'0';
                         }
                     break;
@@ -134,6 +136,8 @@ int main()
                 n+=1;
                 ABC[n]+=ABC[n-1];
             }
+            fprintf(stderr, "Debug messages...%d %d %d %d\n",n,ABC[n],strlen(GAME),i);
+
         }
 
 
