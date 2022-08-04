@@ -8,40 +8,53 @@
  * the standard input according to the problem statement.
  **/
 
-void countForALL(const char GAME[], int cur_index, int &ABC, int &n){
-    int counter = 0;
+void countForALL(const char GAME[], int cur_index, int &ABC, int &n, int counter){
+    if (counter==2){
+        ABC+=10;
+    }
+    else if(counter==1){
+        if (GAME[cur_index-1]=='-'){
+            ABC+=10;
+        }
+        else{
+            ABC+=(10-(GAME[cur_index-1]-'0'));
+        }
+    }
+
     while(GAME[cur_index+1]==' '){
         cur_index++;
         n++;
+        counter-=1;
     }
-    while (GAME[cur_index+1]!=' '){
-        counter = 0;
-        if (GAME[cur_index]=='X'){
-            ABC+=10;
-            while (counter!=2){
-                ABC+=GAME[cur_index+1];
-                counter++;
-            }
-        }
-        else if (GAME[cur_index]=='/'){
-            if (GAME[cur_index-1]=='-'){
+
+    while(counter!=0){
+        if(counter==2){
+            if (GAME[cur_index]=='X'){
                 ABC+=10;
             }
-            else{
+            else if(GAME[cur_index]=='-'){
+            }
+            else if(GAME[cur_index]=='/'){
                 ABC+=(10-(GAME[cur_index-1]-'0'));
             }
-            while (counter==1){
-                ABC+=GAME[cur_index+1];
-                counter++;
+            else{
+                ABC+=GAME[cur_index]-'0';
             }
+            counter-=1;
         }
-        else if (GAME[cur_index]=='-'){
-            ABC+=0;
-        }
-        else{
-            ABC+=GAME[cur_index];
-        }
-        break;   
+        else if(counter==1){
+            if (GAME[cur_index]=='X'){
+                ABC+=10;
+            }
+            else if(GAME[cur_index]=='-'){
+            }
+            else if(GAME[cur_index]=='/'){
+                ABC+=(10-(GAME[cur_index-1]-'0'));
+            }
+            else{
+                ABC+=GAME[cur_index]-'0';
+            }
+            counter-=1;
     }
 }
 
@@ -65,13 +78,13 @@ int main()
                 // fprintf(stderr, "Debug messages...%c %d\n",GAME[i],i);
                 if (GAME[i] == 'X')
                 {
-                    countForALL(GAME, i, ABC[n], n);
+                    countForALL(GAME, i, ABC[n], n,1);
                     if (n == 9)
                         break;
                 }
                 else if (GAME[i] == '/')
                 {
-                    countForALL(GAME, i, ABC[n], n);
+                    countForALL(GAME, i, ABC[n], n,2);
                     if (n == 9)
                         break;
                 }
