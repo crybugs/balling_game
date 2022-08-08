@@ -20,41 +20,46 @@ void countForALL(const char GAME[], int cur_index, int &ABC, int &n, int counter
             ABC+=(10-(GAME[cur_index-1]-'0'));
         }
     }
+    cur_index++;
 
-    while(GAME[cur_index+1]==' '){
+    while(GAME[cur_index]==' '){
         cur_index++;
-        n++;
-        counter-=1;
     }
 
-    while(counter!=0){
-        if(counter==2){
-            if (GAME[cur_index]=='X'){
-                ABC+=10;
-            }
-            else if(GAME[cur_index]=='-'){
-            }
-            else if(GAME[cur_index]=='/'){
-                ABC+=(10-(GAME[cur_index-1]-'0'));
-            }
-            else{
-                ABC+=GAME[cur_index]-'0';
-            }
-            counter-=1;
+    while(counter>0){
+        if (GAME[cur_index]=='X'){
+            ABC+=10;
         }
-        else if(counter==1){
+        else if(GAME[cur_index]=='-'){
+        }
+        else{
+            ABC+=GAME[cur_index]-'0';
+        }
+        counter-=1;
+        if (counter==1){
+            cur_index++;
+            if (GAME[cur_index]==' '){
+                cur_index++;
+            }
             if (GAME[cur_index]=='X'){
                 ABC+=10;
             }
             else if(GAME[cur_index]=='-'){
             }
             else if(GAME[cur_index]=='/'){
-                ABC+=(10-(GAME[cur_index-1]-'0'));
+                if (GAME[cur_index-1]=='-'){
+                    ABC+=10;
+                }
+                else{
+                    ABC+=(10-(GAME[cur_index-1]-'0'));
+                }
             }
             else{
                 ABC+=GAME[cur_index]-'0';
             }
             counter-=1;
+        }        
+        break;
     }
 }
 
@@ -120,3 +125,5 @@ int main()
     // printf("5 13 18 26 31 32 34 40 47 54\n");
     return 0;
 }
+
+// 8/8 數字過大原因還找不到  今天就是慢慢一直修改，但還沒找到最後的問題
