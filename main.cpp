@@ -8,6 +8,7 @@
  * the standard input according to the problem statement.
  **/
 
+
 void countForALL(const char GAME[], int cur_index, int &ABC, int &n, int counter){
     if (counter==2){
         ABC+=10;
@@ -83,13 +84,13 @@ int main()
                 // fprintf(stderr, "Debug messages...%c %d\n",GAME[i],i);
                 if (GAME[i] == 'X')
                 {
-                    countForALL(GAME, i, ABC[n], n,1);
+                    countForALL(GAME, i, ABC[n], n,2);
                     if (n == 9)
                         break;
                 }
                 else if (GAME[i] == '/')
                 {
-                    countForALL(GAME, i, ABC[n], n,2);
+                    countForALL(GAME, i, ABC[n], n,1);
                     if (n == 9)
                         break;
                 }
