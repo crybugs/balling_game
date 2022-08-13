@@ -26,43 +26,66 @@ void countForALL(const char GAME[], int cur_index, int &ABC, int &n, int counter
     while(GAME[cur_index]==' '){
         cur_index++;
     }
-
-    while(counter>0){
+    
+    for (int i=0;i<counter;i++){
+        while (GAME[cur_index]==' '){
+            cur_index++;
+        }
         if (GAME[cur_index]=='X'){
             ABC+=10;
         }
         else if(GAME[cur_index]=='-'){
         }
+        else if(GAME[cur_index]=='/'){
+            if (GAME[cur_index-1]=='-'){
+                ABC+=10;
+            }
+            else{
+                ABC+=(10-(GAME[cur_index-1]-'0'));
+            }
+        }
         else{
             ABC+=GAME[cur_index]-'0';
         }
-        counter-=1;
-        if (counter==1){
-            cur_index++;
-            if (GAME[cur_index]==' '){
-                cur_index++;
-            }
-            if (GAME[cur_index]=='X'){
-                ABC+=10;
-            }
-            else if(GAME[cur_index]=='-'){
-            }
-            else if(GAME[cur_index]=='/'){
-                if (GAME[cur_index-1]=='-'){
-                    ABC+=10;
-                }
-                else{
-                    ABC+=(10-(GAME[cur_index-1]-'0'));
-                }
-            }
-            else{
-                ABC+=GAME[cur_index]-'0';
-            }
-            counter-=1;
-        }        
-        break;
+        cur_index++;
     }
 }
+//     while(counter>0){
+//         if (GAME[cur_index]=='X'){
+//             ABC+=10;
+//         }
+//         else if(GAME[cur_index]=='-'){
+//         }
+//         else{
+//             ABC+=GAME[cur_index]-'0';
+//         }
+//         counter-=1;
+//         if (counter==1){
+//             cur_index++;
+//             if (GAME[cur_index]==' '){
+//                 cur_index++;
+//             }
+//             if (GAME[cur_index]=='X'){
+//                 ABC+=10;
+//             }
+//             else if(GAME[cur_index]=='-'){
+//             }
+//             else if(GAME[cur_index]=='/'){
+//                 if (GAME[cur_index-1]=='-'){
+//                     ABC+=10;
+//                 }
+//                 else{
+//                     ABC+=(10-(GAME[cur_index-1]-'0'));
+//                 }
+//             }
+//             else{
+//                 ABC+=GAME[cur_index]-'0';
+//             }
+//             counter-=1;
+//         }
+//         break;
+//     }
+// }
 
 int main()
 {
@@ -127,4 +150,4 @@ int main()
     return 0;
 }
 
-// 8/8 數字過大原因還找不到  今天就是慢慢一直修改，但還沒找到最後的問題
+// 8/13 把程式改成Strike 跟Spare可以後幾位都行 問題：答案跑出來是前兩個而且怪怪的
