@@ -10,24 +10,9 @@
 
 
 void countForALL(const char GAME[], int cur_index, int &ABC, int &n, int counter){
-    if (counter==2){
-        ABC+=10;
-    }
-    else if(counter==1){
-        if (GAME[cur_index-1]=='-'){
-            ABC+=10;
-        }
-        else{
-            ABC+=(10-(GAME[cur_index-1]-'0'));
-        }
-    }
-    cur_index++;
-
-    while(GAME[cur_index]==' '){
-        cur_index++;
-    }
+  
     
-    for (int i=0;i<counter;i++){
+    for (int i=0;i<=counter;i++){
         while (GAME[cur_index]==' '){
             cur_index++;
         }
